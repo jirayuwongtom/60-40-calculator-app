@@ -26,14 +26,14 @@ body {
 h1 {
     text-align: center;
     color: #333;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     font-size: 24px;
 }
 
 .subtitle {
     text-align: center;
     color: #777;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     font-size: 14px;
 }
 
@@ -81,7 +81,7 @@ input {
     border-radius: 10px;
     font-size: 16px;
     outline: none;
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 }
 
 input:focus {
@@ -172,45 +172,31 @@ input:focus {
     margin-top: 5px;
 }
 
-.footer {
-    text-align: center;
-    margin-top: 20px;
-    color: #999;
-    font-size: 12px;
-}
-
 @media (min-width: 480px) {
     .container {
         padding: 30px;
     }
-
     h1 {
         font-size: 28px;
     }
-
     .info-box strong {
         font-size: 24px;
     }
-    
     input {
         padding: 14px;
         font-size: 18px;
     }
-
     .result-row {
         padding: 15px 20px;
         font-size: 16px;
     }
-
     .highlight {
         font-size: 22px;
         padding: 18px;
     }
-
     .max-purchase {
         font-size: 16px;
     }
-
     .max-purchase strong {
         font-size: 26px;
     }

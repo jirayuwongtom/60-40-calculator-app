@@ -3,60 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เครื่องคำนวณสิทธิ์ 60/40</title>
+    <title>เครื่องคำนวณสิทธิ์ 60/40 พลัส</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>เครื่องคำนวณสิทธิ์ 60/40</h1>
-        <p class="subtitle">รัฐช่วย 60% • เราจ่าย 40%</p>
+        <h1>คำนวณสิทธิ์ ไทยช่วยไทย พลัส</h1>
+        <p class="subtitle">รัฐช่วย 60% (สูงสุด 200/วัน • 1,000/เดือน)</p>
 
         <div class="info">
             <div class="info-box government">
-                รัฐช่วย
-                <strong>60%</strong>
+                รัฐช่วย <strong>60%</strong>
             </div>
             <div class="info-box user">
-                เราจ่าย
-                <strong>40%</strong>
+                เราจ่าย <strong>40%</strong>
             </div>
         </div>
 
-        <label for="remaining">
-            สิทธิ์ที่เหลือ (บาท)
+        <label for="monthlyRemaining">
+            สิทธิ์คงเหลือของเดือนนี้ (บาท)
         </label>
         <input
             type="number"
-            id="remaining"
-            placeholder="เช่น 100"
+            id="monthlyRemaining"
+            placeholder="เช่น 1000"
             min="0"
             step="0.01"
             oninput="calculate()" 
+            onfocus="this.select()"
             autofocus
+        >
+
+        <label for="dailyRemaining">
+            สิทธิ์ที่ใช้ได้ในวันนี้ (บาท)
+            <span style="font-size: 13px; color: #777; font-weight: normal;">*(เว้นว่าง = มีเต็ม 200)*</span>
+        </label>
+        <input
+            type="number"
+            id="dailyRemaining"
+            placeholder="สูงสุด 200"
+            min="0"
+            max="200"
+            step="0.01"
+            oninput="calculate()"
+            onfocus="this.select()"
         >
 
         <label for="price">
             ราคาสินค้า / ข้าว (บาท) 
-            <span style="font-size: 13px; color: #ef4444; font-weight: normal;">*(เว้นว่างได้เพื่อเช็คสิทธิ์)*</span>
+            <span style="font-size: 13px; color: #ef4444; font-weight: normal;">*(เว้นว่างได้)*</span>
         </label>
         <input
             type="number"
             id="price"
-            placeholder="ไม่ต้องกรอก หากต้องการเช็คยอดสูงสุด"
+            placeholder="ไม่ต้องกรอก เพื่อเช็คยอดสูงสุด"
             min="0"
             step="0.01"
             oninput="calculate()"
+            onfocus="this.select()"
         >
+
         <button class="reset-btn" onclick="resetCalculator()">
             ล้างข้อมูล
         </button>
+
         <div id="warning" class="warning"></div>
+
         <div id="result" class="result">
             <div class="result-header">
                 ผลการคำนวณ
@@ -74,13 +91,17 @@
                 <span id="userPay">0.00 บาท</span>
             </div>
             <div class="result-row remaining">
-                <span>สิทธิ์คงเหลือ</span>
-                <span id="remainingAfter">0.00 บาท</span>
+                <span>สิทธิ์วันนี้เหลือ</span>
+                <span id="remainingDailyAfter">0.00 บาท</span>
+            </div>
+            <div class="result-row remaining" style="border-top: none; padding-top: 5px;">
+                <span>สิทธิ์ทั้งเดือนเหลือ</span>
+                <span id="remainingMonthlyAfter">0.00 บาท</span>
             </div>
         </div> 
+
         <div id="maxPurchaseBox" class="max-purchase" style="display: none;">
-            ซื้อได้อีกสูงสุดเพื่อใช้สิทธิ์ให้หมดพอดี
-            <strong id="maxPurchaseAmount">0.00 บาท</strong>
+            <!-- โค้ดส่วนนี้จะถูกแทรกอัตโนมัติจาก JavaScript -->
         </div>
     </div>
     <script src="js/script.js"></script>
