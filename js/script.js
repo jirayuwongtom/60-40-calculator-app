@@ -1,10 +1,29 @@
 function calculate() {
-    const monthlyInput = document.getElementById("monthlyRemaining").value;
-    const dailyInput = document.getElementById("dailyRemaining").value;
-    const priceInput = document.getElementById("price").value;
+    const monthlyElem = document.getElementById("monthlyRemaining");
+    const dailyElem = document.getElementById("dailyRemaining");
+    const priceElem = document.getElementById("price");
+
+    [monthlyElem, dailyElem, priceElem].forEach(elem => {
+        if (elem.value.includes('.')) {
+            let parts = elem.value.split('.');
+    
+            if (parts[1].length > 2) {
+                elem.value = parts[0] + '.' + parts[1].substring(0, 2);
+            }
+        }
+    });
+
+    if (parseFloat(monthlyElem.value) > 1000) monthlyElem.value = 1000;
+    if (parseFloat(dailyElem.value) > 200) dailyElem.value = 200;
+  
+
+
+    const monthlyInput = monthlyElem.value;
+    const dailyInput = dailyElem.value;
+    const priceInput = priceElem.value;
 
     const monthlyRemaining = parseFloat(monthlyInput);
-    // ถ้าไม่ได้กรอกสิทธิ์รายวัน ให้ถือว่ามีเต็ม 200 บาท
+
     const dailyRemaining = dailyInput === "" ? 200 : parseFloat(dailyInput);
     const price = priceInput === "" ? 0 : parseFloat(priceInput);
 
@@ -16,10 +35,11 @@ function calculate() {
     result.style.display = "none";
     if (maxPurchaseBox) maxPurchaseBox.style.display = "none";
     
-    // บังคับว่าต้องกรอกสิทธิ์ทั้งเดือนก่อน
+
     if (isNaN(monthlyRemaining) || monthlyInput === "") {
         return; 
     }
+
 
     if (monthlyRemaining < 0 || dailyRemaining < 0 || price < 0) {
         warning.innerText = "กรุณาใส่จำนวนเงินที่มากกว่าหรือเท่ากับ 0";
@@ -27,16 +47,14 @@ function calculate() {
         return;
     }
 
-    if (dailyRemaining > 200) {
-        warning.innerText = "โควตารายวันใช้ได้สูงสุดไม่เกิน 200 บาท";
+    if (dailyRemaining > monthlyRemaining) {
+        warning.innerText = "สิทธิ์วันนี้ ต้องไม่มากกว่า สิทธิ์ทั้งเดือนที่เหลืออยู่";
         warning.style.display = "block";
         return;
     }
 
-    // สิทธิ์ที่ใช้ได้จริงในการสแกนครั้งนี้
     const availableSubsidy = Math.min(monthlyRemaining, dailyRemaining);
 
-    // === กรณี: เช็คยอดสูงสุดอย่างเดียว (เว้นว่างราคาสินค้า) ===
     if (price === 0) {
         if (monthlyRemaining > 0) {
             const maxToday = availableSubsidy / 0.6;
@@ -47,7 +65,6 @@ function calculate() {
                 <strong style="color: #2563eb; font-size: 24px; display: block; margin-top: 5px;">${formatMoney(maxToday)} บาท</strong>
             </div>`;
 
-            // ถ้าสิทธิ์ทั้งเดือนเหลือมากกว่าสิทธิ์วันนี้ ให้โชว์ยอดของทั้งเดือนด้วย
             if (maxTotal > maxToday) {
                 html += `<div style="border-top: 1px dashed #ccc; padding-top: 15px;">
                     ยอดซื้อเพื่อใช้สิทธิ์ <strong>ทั้งเดือน</strong> ให้หมดพอดี<br>
@@ -65,7 +82,6 @@ function calculate() {
         return;
     }
 
-    // === กรณี: มีการกรอกราคาสินค้ามาด้วย ===
     let government = price * 0.60;
 
     if (government > availableSubsidy) {
