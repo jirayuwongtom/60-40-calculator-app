@@ -31,29 +31,30 @@
     <label for="remaining">
         สิทธิ์ที่เหลือ (บาท)
     </label>
+    <!-- เพิ่ม oninput และ autofocus ตรงนี้ -->
     <input
         type="number"
         id="remaining"
         placeholder="เช่น 100"
         min="0"
         step="0.01"
+        oninput="calculate()" 
+        autofocus
     >
 
     <label for="price">
         ราคาสินค้า / ข้าว (บาท) 
         <span style="font-size: 13px; color: #ef4444; font-weight: normal;">*(เว้นว่างได้เพื่อเช็คสิทธิ์)*</span>
     </label>
+    <!-- เพิ่ม oninput ตรงนี้ด้วย -->
     <input
         type="number"
         id="price"
         placeholder="ไม่ต้องกรอก หากต้องการเช็คยอดสูงสุด"
         min="0"
         step="0.01"
+        oninput="calculate()"
     >
-
-    <button class="calculate-btn" onclick="calculate()">
-        คำนวณ
-    </button>
 
     <button class="reset-btn" onclick="resetCalculator()">
         ล้างข้อมูล
@@ -81,9 +82,8 @@
             <span>สิทธิ์คงเหลือ</span>
             <span id="remainingAfter">0.00 บาท</span>
         </div>
-    </div> <!-- ปิด div ของ result ไว้ตรงนี้ -->
+    </div> 
 
-    <!-- ย้าย maxPurchaseBox ออกมาอยู่ข้างนอก result แบบนี้ครับ -->
     <div id="maxPurchaseBox" class="max-purchase" style="display: none;">
         ซื้อได้อีกสูงสุดเพื่อใช้สิทธิ์ให้หมดพอดี
         <strong id="maxPurchaseAmount">0.00 บาท</strong>

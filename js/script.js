@@ -3,7 +3,6 @@ function calculate() {
     const priceInput = document.getElementById("price").value;
 
     const remaining = parseFloat(remainingInput);
-
     const price = priceInput === "" ? 0 : parseFloat(priceInput);
 
     const warning = document.getElementById("warning");
@@ -14,10 +13,9 @@ function calculate() {
     result.style.display = "none";
     if (maxPurchaseBox) maxPurchaseBox.style.display = "none";
 
-    if (isNaN(remaining)) {
-        warning.innerText = "กรุณากรอกสิทธิ์ที่เหลือ";
-        warning.style.display = "block";
-        return;
+    // แก้ไขตรงนี้: ถ้าลบจนว่างเปล่า ให้ซ่อนเนียนๆ ไม่ต้องขึ้นสีแดง
+    if (isNaN(remaining) || remainingInput === "") {
+        return; 
     }
 
     if (remaining < 0 || price < 0) {
@@ -41,7 +39,6 @@ function calculate() {
     const government = price * 0.60;
     const user = price * 0.40;
     const after = remaining - government;
-
 
     if (government > remaining) {
         warning.innerText = "สิทธิ์ไม่พอสำหรับการซื้อจำนวนนี้";
@@ -79,6 +76,9 @@ function resetCalculator() {
     
     const maxPurchaseBox = document.getElementById("maxPurchaseBox");
     if (maxPurchaseBox) maxPurchaseBox.style.display = "none";
+    
+    // พอกดล้างข้อมูลปุ๊บ ให้เคอร์เซอร์เด้งไปรอที่ช่องแรก
+    document.getElementById("remaining").focus();
 }
 
 document.addEventListener("keydown", function(event) {

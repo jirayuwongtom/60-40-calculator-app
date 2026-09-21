@@ -4,6 +4,7 @@
     padding: 0;
 }
 
+/* === 1. การตั้งค่าพื้นฐานสำหรับ "จอมือถือ" (Mobile First) === */
 body {
     font-family: 'Prompt', sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2);
@@ -11,7 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 15px; /* ระยะขอบจอมือถือ */
 }
 
 .container {
@@ -19,7 +20,7 @@ body {
     max-width: 500px;
     background: white;
     border-radius: 20px;
-    padding: 30px;
+    padding: 20px; /* Padding พื้นฐานสำหรับมือถือ */
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -27,31 +28,34 @@ h1 {
     text-align: center;
     color: #333;
     margin-bottom: 8px;
+    font-size: 24px; /* ขนาดฟอนต์มือถือ */
 }
 
 .subtitle {
     text-align: center;
     color: #777;
     margin-bottom: 25px;
+    font-size: 14px;
 }
 
 .info {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 25px;
 }
 
 .info-box {
-    padding: 15px;
+    padding: 12px;
     border-radius: 12px;
     text-align: center;
     background: #f5f5f5;
+    font-size: 14px;
 }
 
 .info-box strong {
     display: block;
-    font-size: 24px;
+    font-size: 20px; /* ขนาดตัวเลขมือถือ */
     margin-top: 5px;
 }
 
@@ -68,14 +72,15 @@ label {
     margin-bottom: 8px;
     color: #333;
     font-weight: bold;
+    font-size: 15px;
 }
 
 input {
     width: 100%;
-    padding: 13px;
+    padding: 12px;
     border: 2px solid #ddd;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 16px;
     outline: none;
     margin-bottom: 18px;
 }
@@ -84,30 +89,17 @@ input:focus {
     border-color: #667eea;
 }
 
-button {
+.reset-btn {
     width: 100%;
     padding: 14px;
     border: none;
     border-radius: 10px;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 5px;
-}
-
-.calculate-btn {
-    background: #667eea;
-    color: white;
-}
-
-.calculate-btn:hover {
-    background: #5568d8;
-}
-
-.reset-btn {
     background: #eee;
     color: #555;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .result {
@@ -120,7 +112,7 @@ button {
 
 .result-header {
     background: #f5f5f5;
-    padding: 15px;
+    padding: 12px;
     font-weight: bold;
     text-align: center;
     color: #333;
@@ -129,8 +121,10 @@ button {
 .result-row {
     display: flex;
     justify-content: space-between;
-    padding: 13px 18px;
+    padding: 12px 15px;
     border-top: 1px solid #eee;
+    align-items: center;
+    font-size: 15px;
 }
 
 .result-row span:last-child {
@@ -140,7 +134,11 @@ button {
 .highlight {
     background: #f0fdf4;
     color: #15803d;
-    font-size: 19px;
+    font-size: 20px; /* ปรับขนาดมือถือให้พอดีไม่ล้น */
+    padding: 15px; 
+    border-radius: 8px;
+    margin: 5px 10px;
+    border: 2px dashed #22c55e;
 }
 
 .warning {
@@ -151,6 +149,7 @@ button {
     border-radius: 10px;
     text-align: center;
     display: none;
+    font-size: 14px;
 }
 
 .remaining {
@@ -164,11 +163,12 @@ button {
     background: #faf5ff;
     border-radius: 12px;
     text-align: center;
+    font-size: 14px;
 }
 
 .max-purchase strong {
     display: block;
-    font-size: 25px;
+    font-size: 22px;
     color: #7e22ce;
     margin-top: 5px;
 }
@@ -177,19 +177,43 @@ button {
     text-align: center;
     margin-top: 20px;
     color: #999;
-    font-size: 13px;
+    font-size: 12px;
 }
 
-@media (max-width: 480px) {
+/* === 2. ขยายขนาดเมื่อเป็นหน้าจอที่ใหญ่ขึ้น (Tablet / Desktop) === */
+@media (min-width: 480px) {
     .container {
-        padding: 20px;
+        padding: 30px; /* เพิ่มพื้นที่ว่างด้านในให้ดูไม่อึดอัด */
     }
 
     h1 {
-        font-size: 25px;
+        font-size: 28px;
     }
 
     .info-box strong {
-        font-size: 20px;
+        font-size: 24px;
+    }
+    
+    input {
+        padding: 14px;
+        font-size: 18px;
+    }
+
+    .result-row {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+
+    .highlight {
+        font-size: 22px;
+        padding: 18px;
+    }
+
+    .max-purchase {
+        font-size: 16px;
+    }
+
+    .max-purchase strong {
+        font-size: 26px;
     }
 }
