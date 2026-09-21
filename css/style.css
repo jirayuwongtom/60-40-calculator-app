@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: Arial, "Noto Sans Thai", sans-serif;
+    font-family: 'Prompt', sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2);
     min-height: 100vh;
     display: flex;

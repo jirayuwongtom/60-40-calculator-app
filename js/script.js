@@ -44,6 +44,17 @@ function calculate() {
     document.getElementById("remainingAfter").innerText = formatMoney(after) + " บาท";
 
     result.style.display = "block";
+
+    const maxPurchaseBox = document.getElementById("maxPurchaseBox");
+    
+    if (after > 0) {
+        // คำนวณยอดซื้อสูงสุด: นำสิทธิ์ที่เหลือ (after) มาหารด้วย 0.6
+        const maxPurchase = after / 0.6;
+        document.getElementById("maxPurchaseAmount").innerText = formatMoney(maxPurchase) + " บาท";
+        maxPurchaseBox.style.display = "block"; // แสดงกล่อง
+    } else {
+        maxPurchaseBox.style.display = "none"; // ซ่อนกล่องถ้าสิทธิ์เหลือ 0
+    }
 }
 
 function formatMoney(number) {
@@ -59,6 +70,8 @@ function resetCalculator() {
 
     document.getElementById("warning").style.display = "none";
     document.getElementById("result").style.display = "none";
+
+    document.getElementById("maxPurchaseBox").style.display = "none";
 }
 
 // กด Enter เพื่อคำนวณ
