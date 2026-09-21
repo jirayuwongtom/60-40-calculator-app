@@ -1,10 +1,8 @@
 function calculate() {
     const remainingInput = document.getElementById("remaining").value;
     const priceInput = document.getElementById("price").value;
-
     const remaining = parseFloat(remainingInput);
     const price = priceInput === "" ? 0 : parseFloat(priceInput);
-
     const warning = document.getElementById("warning");
     const result = document.getElementById("result");
     const maxPurchaseBox = document.getElementById("maxPurchaseBox");
@@ -12,8 +10,7 @@ function calculate() {
     warning.style.display = "none";
     result.style.display = "none";
     if (maxPurchaseBox) maxPurchaseBox.style.display = "none";
-
-    // แก้ไขตรงนี้: ถ้าลบจนว่างเปล่า ให้ซ่อนเนียนๆ ไม่ต้องขึ้นสีแดง
+    
     if (isNaN(remaining) || remainingInput === "") {
         return; 
     }
@@ -70,19 +67,12 @@ function formatMoney(number) {
 function resetCalculator() {
     document.getElementById("remaining").value = "";
     document.getElementById("price").value = "";
-
     document.getElementById("warning").style.display = "none";
     document.getElementById("result").style.display = "none";
     
     const maxPurchaseBox = document.getElementById("maxPurchaseBox");
+
     if (maxPurchaseBox) maxPurchaseBox.style.display = "none";
-    
-    // พอกดล้างข้อมูลปุ๊บ ให้เคอร์เซอร์เด้งไปรอที่ช่องแรก
+
     document.getElementById("remaining").focus();
 }
-
-document.addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        calculate();
-    }
-});

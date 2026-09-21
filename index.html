@@ -11,85 +11,78 @@
 
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+    <div class="container">
+        <h1>เครื่องคำนวณสิทธิ์ 60/40</h1>
+        <p class="subtitle">รัฐช่วย 60% • เราจ่าย 40%</p>
 
-<div class="container">
-    <h1>เครื่องคำนวณสิทธิ์ 60/40</h1>
-    <p class="subtitle">รัฐช่วย 60% • เราจ่าย 40%</p>
-
-    <div class="info">
-        <div class="info-box government">
-            รัฐช่วย
-            <strong>60%</strong>
+        <div class="info">
+            <div class="info-box government">
+                รัฐช่วย
+                <strong>60%</strong>
+            </div>
+            <div class="info-box user">
+                เราจ่าย
+                <strong>40%</strong>
+            </div>
         </div>
-        <div class="info-box user">
-            เราจ่าย
-            <strong>40%</strong>
+
+        <label for="remaining">
+            สิทธิ์ที่เหลือ (บาท)
+        </label>
+        <input
+            type="number"
+            id="remaining"
+            placeholder="เช่น 100"
+            min="0"
+            step="0.01"
+            oninput="calculate()" 
+            autofocus
+        >
+
+        <label for="price">
+            ราคาสินค้า / ข้าว (บาท) 
+            <span style="font-size: 13px; color: #ef4444; font-weight: normal;">*(เว้นว่างได้เพื่อเช็คสิทธิ์)*</span>
+        </label>
+        <input
+            type="number"
+            id="price"
+            placeholder="ไม่ต้องกรอก หากต้องการเช็คยอดสูงสุด"
+            min="0"
+            step="0.01"
+            oninput="calculate()"
+        >
+        <button class="reset-btn" onclick="resetCalculator()">
+            ล้างข้อมูล
+        </button>
+        <div id="warning" class="warning"></div>
+        <div id="result" class="result">
+            <div class="result-header">
+                ผลการคำนวณ
+            </div>
+            <div class="result-row">
+                <span>ราคาสินค้า</span>
+                <span id="totalPrice">0.00 บาท</span>
+            </div>
+            <div class="result-row">
+                <span>รัฐช่วย 60%</span>
+                <span id="governmentPay">0.00 บาท</span>
+            </div>
+            <div class="result-row highlight">
+                <span>เราจ่าย 40%</span>
+                <span id="userPay">0.00 บาท</span>
+            </div>
+            <div class="result-row remaining">
+                <span>สิทธิ์คงเหลือ</span>
+                <span id="remainingAfter">0.00 บาท</span>
+            </div>
+        </div> 
+        <div id="maxPurchaseBox" class="max-purchase" style="display: none;">
+            ซื้อได้อีกสูงสุดเพื่อใช้สิทธิ์ให้หมดพอดี
+            <strong id="maxPurchaseAmount">0.00 บาท</strong>
         </div>
     </div>
-
-    <label for="remaining">
-        สิทธิ์ที่เหลือ (บาท)
-    </label>
-    <!-- เพิ่ม oninput และ autofocus ตรงนี้ -->
-    <input
-        type="number"
-        id="remaining"
-        placeholder="เช่น 100"
-        min="0"
-        step="0.01"
-        oninput="calculate()" 
-        autofocus
-    >
-
-    <label for="price">
-        ราคาสินค้า / ข้าว (บาท) 
-        <span style="font-size: 13px; color: #ef4444; font-weight: normal;">*(เว้นว่างได้เพื่อเช็คสิทธิ์)*</span>
-    </label>
-    <!-- เพิ่ม oninput ตรงนี้ด้วย -->
-    <input
-        type="number"
-        id="price"
-        placeholder="ไม่ต้องกรอก หากต้องการเช็คยอดสูงสุด"
-        min="0"
-        step="0.01"
-        oninput="calculate()"
-    >
-
-    <button class="reset-btn" onclick="resetCalculator()">
-        ล้างข้อมูล
-    </button>
-
-    <div id="warning" class="warning"></div>
-
-    <div id="result" class="result">
-        <div class="result-header">
-            ผลการคำนวณ
-        </div>
-        <div class="result-row">
-            <span>ราคาสินค้า</span>
-            <span id="totalPrice">0.00 บาท</span>
-        </div>
-        <div class="result-row">
-            <span>รัฐช่วย 60%</span>
-            <span id="governmentPay">0.00 บาท</span>
-        </div>
-        <div class="result-row highlight">
-            <span>เราจ่าย 40%</span>
-            <span id="userPay">0.00 บาท</span>
-        </div>
-        <div class="result-row remaining">
-            <span>สิทธิ์คงเหลือ</span>
-            <span id="remainingAfter">0.00 บาท</span>
-        </div>
-    </div> 
-
-    <div id="maxPurchaseBox" class="max-purchase" style="display: none;">
-        ซื้อได้อีกสูงสุดเพื่อใช้สิทธิ์ให้หมดพอดี
-        <strong id="maxPurchaseAmount">0.00 บาท</strong>
-    </div>
-
-</div>
-<script src="js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

@@ -4,7 +4,6 @@
     padding: 0;
 }
 
-/* === 1. การตั้งค่าพื้นฐานสำหรับ "จอมือถือ" (Mobile First) === */
 body {
     font-family: 'Prompt', sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2);
@@ -12,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px; /* ระยะขอบจอมือถือ */
+    padding: 15px; 
 }
 
 .container {
@@ -20,7 +19,7 @@ body {
     max-width: 500px;
     background: white;
     border-radius: 20px;
-    padding: 20px; /* Padding พื้นฐานสำหรับมือถือ */
+    padding: 20px; 
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -28,7 +27,7 @@ h1 {
     text-align: center;
     color: #333;
     margin-bottom: 8px;
-    font-size: 24px; /* ขนาดฟอนต์มือถือ */
+    font-size: 24px;
 }
 
 .subtitle {
@@ -55,7 +54,7 @@ h1 {
 
 .info-box strong {
     display: block;
-    font-size: 20px; /* ขนาดตัวเลขมือถือ */
+    font-size: 20px;
     margin-top: 5px;
 }
 
@@ -134,7 +133,7 @@ input:focus {
 .highlight {
     background: #f0fdf4;
     color: #15803d;
-    font-size: 20px; /* ปรับขนาดมือถือให้พอดีไม่ล้น */
+    font-size: 20px; 
     padding: 15px; 
     border-radius: 8px;
     margin: 5px 10px;
@@ -180,10 +179,9 @@ input:focus {
     font-size: 12px;
 }
 
-/* === 2. ขยายขนาดเมื่อเป็นหน้าจอที่ใหญ่ขึ้น (Tablet / Desktop) === */
 @media (min-width: 480px) {
     .container {
-        padding: 30px; /* เพิ่มพื้นที่ว่างด้านในให้ดูไม่อึดอัด */
+        padding: 30px;
     }
 
     h1 {
