@@ -201,3 +201,14 @@ input:focus {
         font-size: 26px;
     }
 }
+
+.extra-payment {
+    background: #fff7ed;
+    color: #c2410c;
+    border-top: 1px solid #fed7aa;
+}
+
+.extra-payment span:last-child {
+    font-weight: bold;
+    color: #ea580c;
+}
